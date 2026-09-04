@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{afe9caab-a847-41f3-9cfc-17d3e459ebf3}">
+		<property name="assetPath">
+			<value>Amb/Rooster.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>3.1029583333333335</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{abfc3c33-6703-4d2f-a4c7-f45b059864dd}</destination>
+		</relationship>
+	</object>
+</objects>

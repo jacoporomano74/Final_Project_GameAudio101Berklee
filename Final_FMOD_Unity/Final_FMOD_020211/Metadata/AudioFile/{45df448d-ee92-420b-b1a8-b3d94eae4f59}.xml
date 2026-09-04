@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{45df448d-ee92-420b-b1a8-b3d94eae4f59}">
+		<property name="assetPath">
+			<value>Cubes/cube_coin_02.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.3859410430839003</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{abfc3c33-6703-4d2f-a4c7-f45b059864dd}</destination>
+		</relationship>
+	</object>
+</objects>

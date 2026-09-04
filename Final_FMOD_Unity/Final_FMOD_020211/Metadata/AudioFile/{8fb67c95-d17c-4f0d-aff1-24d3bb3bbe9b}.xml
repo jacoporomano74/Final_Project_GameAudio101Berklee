@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8fb67c95-d17c-4f0d-aff1-24d3bb3bbe9b}">
+		<property name="assetPath">
+			<value>Transition/mus_HQ_cymbal_swell.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>6.2605208333333335</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{abfc3c33-6703-4d2f-a4c7-f45b059864dd}</destination>
+		</relationship>
+	</object>
+</objects>

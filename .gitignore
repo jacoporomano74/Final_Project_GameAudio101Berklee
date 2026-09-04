@@ -1,0 +1,40 @@
+# ============================
+# Unity
+# ============================
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/[Ll]ibrary/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/[Tt]emp/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/[Oo]bj/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/[Bb]uild/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/[Bb]uilds/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/[Ll]ogs/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/[Uu]ser[Ss]ettings/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/[Mm]emoryCaptures/
+
+# File generati da editor/IDE
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/.vs/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/.idea/
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.csproj
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.unityproj
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.sln
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.suo
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.tmp
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.user
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.userprefs
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.pdb
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/*.mdb
+
+# Crash logs Unity
+Final_FMOD_Unity/Final_Unity_2023_1_16f1/sysinfo.txt
+
+# ============================
+# FMOD (risolve anche il vecchio problema con Dropbox)
+# ============================
+Final_FMOD_Unity/Final_FMOD_020211/.cache/
+Final_FMOD_Unity/Final_FMOD_020211/.unsaved/
+Final_FMOD_Unity/Final_FMOD_020211/Build/
+Final_FMOD_Unity/Final_FMOD_020211/.user
+
+# ============================
+# macOS
+# ============================
+.DS_Store

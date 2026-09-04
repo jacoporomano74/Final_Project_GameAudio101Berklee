@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPresetFolder" id="{360c6955-a71c-4686-b7e0-530fbc61157f}">
+        <property name="name">
+            <value>Rolling</value>
+        </property>
+        <relationship name="folder">
+            <destination>{f8486c49-3d3e-0b18-03df-ee86d8c76b32}</destination>
+        </relationship>
+    </object>
+</objects>

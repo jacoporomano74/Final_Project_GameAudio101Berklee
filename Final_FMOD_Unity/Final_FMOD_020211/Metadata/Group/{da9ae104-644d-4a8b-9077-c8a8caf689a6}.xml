@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="MixerGroup" id="{da9ae104-644d-4a8b-9077-c8a8caf689a6}">
+		<property name="name">
+			<value>3DRoom</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{d12d1932-c2fa-4578-9fd7-d2125109ad25}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{fd986e63-7859-4700-a292-d04210003b9e}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{dd982c28-2f31-480e-a11a-69657334bb94}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{d12d1932-c2fa-4578-9fd7-d2125109ad25}">
+		<relationship name="effects">
+			<destination>{df366879-9f78-441b-a638-c3b7a85a9559}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{fd986e63-7859-4700-a292-d04210003b9e}" />
+	<object class="MixerBusFader" id="{df366879-9f78-441b-a638-c3b7a85a9559}" />
+</objects>
