@@ -92,61 +92,22 @@ public class PlayerController : MonoBehaviour {
 			other.gameObject.SetActive(false);
 		}
 
-		if (other.gameObject.CompareTag ("Playcube")) {
-			// When collision with the Playcube is detected, and if not already playing music event, play the music
-
-            FMOD.Studio.PLAYBACK_STATE play_state;
-            musicEv.getPlaybackState(out play_state);
-            if (play_state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-            {
-                musicEv.setParameterByName("Change", 0);
-                musicEv.start();
-            }
-		}
-			if (other.gameObject.CompareTag ("Playcube"))
-			{
-            // When collision with the Stopcube is detected, set end param to 1, which transitions to the end of the event music
-
-            musicEv.setParameterByName("Change", 0);
-
-            // musicEv.release (); if you do not intend on playing this sound again
-        }
-		
-
 		if (other.gameObject.CompareTag ("ChangeCube"))
 		{
-            // When collision with the Stopcube is detected, set end param to 1, which transitions to the end of the event music
-
-            musicEv.setParameterByName("Change", 1);
-
-            // musicEv.release (); if you do not intend on playing this sound again
+            musicEv.setParameterByName("Change", 0);
         }
-
 		if (other.gameObject.CompareTag ("wincube"))
         {
-            // When collision with the Stopcube is detected, set end param to 1, which transitions to the end of the event music
-
             musicEv.setParameterByName("Change", 2);
-
-            // musicEv.release (); if you do not intend on playing this sound again
         }
 
 		if (other.gameObject.CompareTag ("losecube"))
         {
-            // When collision with the Killcube is detected, immediately stop the event music
-
             musicEv.setParameterByName("Change", 3);
-
-            //musicEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-
-            //musicEv.release (); can be called if the music does not need to be switched on again.
         }
 
         if (other.gameObject.CompareTag("ReverbZone"))
         {
-	
-			// When collision with the ReverbZone is detected, turn on the Reverb Snapshot
-
             reverbSnapshotEv.start();
 
             Debug.Log("reverb snapshot begin");
@@ -157,11 +118,27 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("ReverbZone"))
         {
-			// When collision with the ReverbZone ends, turn off the Reverb Snapshot
+            // When collision with the ReverbZone ends, turn off the Reverb Snapshot
 
             reverbSnapshotEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
             Debug.Log("reverb snapshot stopped");
+        }
+
+        if (other.gameObject.CompareTag("Playcube"))
+        {
+            FMOD.Studio.PLAYBACK_STATE play_state;
+            musicEv.getPlaybackState(out play_state);
+            if (play_state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            {
+                musicEv.setParameterByName("Change", 0);
+                musicEv.start();
+            }
+        }
+
+        if (other.gameObject.CompareTag("ChangeCube"))
+        {
+            musicEv.setParameterByName("Change", 1);
         }
     }
 }
