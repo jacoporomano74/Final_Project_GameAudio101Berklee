@@ -100,6 +100,11 @@ public class PlayerController : MonoBehaviour
                 musicEv.setParameterByName("Change", 2);
             }
         }
+        if (other.gameObject.CompareTag ("losecube"))
+        {
+            other.gameObject.SetActive(false);
+            musicEv.setParameterByName("Change", 3);
+        }
 
         if (other.gameObject.CompareTag("ChangeCube"))
         {
