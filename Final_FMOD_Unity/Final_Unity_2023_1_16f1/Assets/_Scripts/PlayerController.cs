@@ -2,13 +2,16 @@
 using System.Collections;
 //using Studio.System.initialize;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
-	// Declare your FMOD Sounds in this section
+    // Declare your FMOD Sounds in this section
 
     public float speed;
-	
-	private GameObject playerFollow;
+    private int count = 0;
+    public int totalPickups = 9;
+
+    private GameObject playerFollow;
 
     Rigidbody rigidBody;                                //rigid body component
 
@@ -17,46 +20,46 @@ public class PlayerController : MonoBehaviour {
     public string music = "event:/Music";               //Public string is the display property and type of variable we are declaring. ‘music’ is the name of the variable, and we also assign the path to the FMOD Event.
     FMOD.Studio.EventInstance musicEv;                  //cube event music
 
-    FMODUnity.EventReference Rolling;		            //Declare FMOD Studio Event for Unity
-	public string rolling = "event:/Rolling";			//declare the sound name and event path
+    FMODUnity.EventReference Rolling;                   //Declare FMOD Studio Event for Unity
+    public string rolling = "event:/Rolling";			//declare the sound name and event path
     FMOD.Studio.EventInstance rollingEv;                //rolling event
 
 
     FMODUnity.EventReference cube_pickup;
-	public string inputSound = "event:/cube_pickup";
+    public string inputSound = "event:/cube_pickup";
 
-    FMODUnity.EventReference Reverb;				    //Declaring snapshots
- 	public string reverbSnapshot = "snapshot:/ReverbRoom";
+    FMODUnity.EventReference Reverb;                    //Declaring snapshots
+    public string reverbSnapshot = "snapshot:/ReverbRoom";
     private FMOD.Studio.EventInstance reverbSnapshotEv;
 
 
-    void Start ()
-	{
+    void Start()
+    {
         rigidBody = GetComponent<Rigidbody>();
-		
+
         // Setting up the references.
         playerFollow = GameObject.FindGameObjectWithTag("PlayerFollow");
-      
 
-																// Create FMOD event instances and get parameters in this section
+
+        // Create FMOD event instances and get parameters in this section
 
         musicEv = FMODUnity.RuntimeManager.CreateInstance(music);
 
-		
-		//We use the event name that we specified up in the Public class section. Speed is how the parameter is named in FMOD Studio. We output that to rollingSpeedParam – so the parameter name that we supplied in the public class section. Then, we start the sound
 
-        rollingEv = FMODUnity.RuntimeManager.CreateInstance(rolling);  
-      
+        //We use the event name that we specified up in the Public class section. Speed is how the parameter is named in FMOD Studio. We output that to rollingSpeedParam – so the parameter name that we supplied in the public class section. Then, we start the sound
+
+        rollingEv = FMODUnity.RuntimeManager.CreateInstance(rolling);
+
         rollingEv.start();
 
         reverbSnapshotEv = FMODUnity.RuntimeManager.CreateInstance(reverbSnapshot);
     }
 
-    void FixedUpdate ()
-	{
+    void FixedUpdate()
+    {
         //player movement with input axis
-		float moveHorizontal = Input.GetAxis("Horizontal");
-		float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
@@ -71,37 +74,39 @@ public class PlayerController : MonoBehaviour {
         Debug.Log(Mathf.Max(Mathf.Abs(rigidBody.velocity.x), Mathf.Abs(rigidBody.velocity.z)) * 40.0f);
     }
 
-	void Update ()
-	{
-		// Detect spacebar press
+    void Update()
+    {
+        // Detect spacebar press
 
-		if (Input.GetKeyDown ("space")) {
-		
-			FMODUnity.RuntimeManager.PlayOneShot (inputSound);
+        if (Input.GetKeyDown("space"))
+        {
 
-		}
-	}
+            FMODUnity.RuntimeManager.PlayOneShot(inputSound);
+
+        }
+    }
 
 
     void OnTriggerEnter(Collider other)
-	{
-        /* if colliding with cubes */
-
-		if (other.gameObject.CompareTag ("Pickup"))
+    {
+        if (other.gameObject.CompareTag("Pickup"))
         {
-			other.gameObject.SetActive(false);
-		}
+            other.gameObject.SetActive(false);
+            count++;
+            Debug.Log("Pickup raccolti: " + count);
 
-		if (other.gameObject.CompareTag ("ChangeCube"))
-		{
+            if (count >= totalPickups)
+            {
+                musicEv.setParameterByName("Change", 2);
+            }
+        }
+
+        if (other.gameObject.CompareTag("ChangeCube"))
+        {
             musicEv.setParameterByName("Change", 0);
         }
-		if (other.gameObject.CompareTag ("wincube"))
-        {
-            musicEv.setParameterByName("Change", 2);
-        }
 
-		if (other.gameObject.CompareTag ("losecube"))
+        if (other.gameObject.CompareTag("losecube"))
         {
             musicEv.setParameterByName("Change", 3);
         }
@@ -112,7 +117,7 @@ public class PlayerController : MonoBehaviour {
 
             Debug.Log("reverb snapshot begin");
         }
-	}
+    }
 
     void OnTriggerExit(Collider other)
     {
