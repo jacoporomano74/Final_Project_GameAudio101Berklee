@@ -250,7 +250,10 @@
 			<value>167.11110416666668</value>
 		</property>
 		<property name="length">
-			<value>5.8517291666666669</value>
+			<value>10.555583333333333</value>
+		</property>
+		<property name="volume">
+			<value>5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{66ec83cf-675c-4375-ab03-0f1589367d95}</destination>
@@ -538,7 +541,7 @@
 	</object>
 	<object class="TransitionMarker" id="{e070a107-1e9d-483c-8d80-b93c357d62a2}">
 		<property name="position">
-			<value>172.96283333333335</value>
+			<value>177.66668750000002</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{2df4bb12-3307-4f26-8693-4b8fff26a95a}</destination>
@@ -626,9 +629,6 @@
 		<property name="length">
 			<value>35.555562500000008</value>
 		</property>
-		<property name="quantizationInterval">
-			<value>5</value>
-		</property>
 		<relationship name="timeline">
 			<destination>{2df4bb12-3307-4f26-8693-4b8fff26a95a}</destination>
 		</relationship>
@@ -650,7 +650,7 @@
 			<value>35.555562500000008</value>
 		</property>
 		<property name="quantizationInterval">
-			<value>5</value>
+			<value>6</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{2df4bb12-3307-4f26-8693-4b8fff26a95a}</destination>
@@ -671,9 +671,6 @@
 		</property>
 		<property name="length">
 			<value>82.285708333333332</value>
-		</property>
-		<property name="quantizationInterval">
-			<value>5</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{2df4bb12-3307-4f26-8693-4b8fff26a95a}</destination>
@@ -696,7 +693,7 @@
 			<value>82.285708333333332</value>
 		</property>
 		<property name="quantizationInterval">
-			<value>5</value>
+			<value>6</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{2df4bb12-3307-4f26-8693-4b8fff26a95a}</destination>
