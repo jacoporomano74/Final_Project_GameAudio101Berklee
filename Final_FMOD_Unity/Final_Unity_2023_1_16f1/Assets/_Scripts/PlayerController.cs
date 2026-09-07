@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     // Declare your FMOD Sounds in this section
 
     public float speed;
+    public float mushroomDuckRadius = 30f;
+    private GameObject[] mushrooms;
     private int count = 0;
     public int totalPickups = 9;
 
@@ -36,6 +38,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+
+        mushrooms = GameObject.FindGameObjectsWithTag("losecube");
 
         // Setting up the references.
         playerFollow = GameObject.FindGameObjectWithTag("PlayerFollow");
@@ -72,6 +76,17 @@ public class PlayerController : MonoBehaviour
         //rollingSpeedParam.setParameterByName(Mathf.Max(Mathf.Abs(rigidBody.velocity.x), Mathf.Abs(rigidBody.velocity.z)) * 40.0f);
         rollingEv.setParameterByName("speed", Mathf.Max(Mathf.Abs(rigidBody.velocity.x), Mathf.Abs(rigidBody.velocity.z)) * 40.0f);
         Debug.Log(Mathf.Max(Mathf.Abs(rigidBody.velocity.x), Mathf.Abs(rigidBody.velocity.z)) * 40.0f);
+        float closest = mushroomDuckRadius;
+        foreach (GameObject m in mushrooms)
+        {
+            if (m != null && m.activeInHierarchy)
+            {
+                float d = Vector3.Distance(transform.position, m.transform.position);
+                if (d < closest) closest = d;
+            }
+        }
+        float proximity = 1f - (closest / mushroomDuckRadius);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MushroomProximity", proximity);
     }
 
     void Update()
@@ -100,7 +115,7 @@ public class PlayerController : MonoBehaviour
                 musicEv.setParameterByName("Change", 2);
             }
         }
-        if (other.gameObject.CompareTag ("losecube"))
+        if (other.gameObject.CompareTag("losecube"))
         {
             other.gameObject.SetActive(false);
             musicEv.setParameterByName("Change", 3);
