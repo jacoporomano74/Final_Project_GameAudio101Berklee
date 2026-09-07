@@ -575,7 +575,7 @@
 			<value>82.285708333333332</value>
 		</property>
 		<property name="quantizationInterval">
-			<value>2</value>
+			<value>6</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{2df4bb12-3307-4f26-8693-4b8fff26a95a}</destination>
@@ -601,7 +601,7 @@
 			<value>35.555562500000008</value>
 		</property>
 		<property name="quantizationInterval">
-			<value>2</value>
+			<value>6</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{2df4bb12-3307-4f26-8693-4b8fff26a95a}</destination>

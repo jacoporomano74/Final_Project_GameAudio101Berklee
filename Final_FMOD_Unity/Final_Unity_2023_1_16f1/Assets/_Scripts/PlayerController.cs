@@ -126,8 +126,12 @@ public class PlayerController : MonoBehaviour
             musicEv.setParameterByName("Change", 0);
         }
 
-        if (other.gameObject.CompareTag("losecube"))
+        if (other.gameObject.CompareTag ("losecube"))
         {
+            FMODUnity.StudioEventEmitter emitter = other.GetComponent<FMODUnity.StudioEventEmitter>();
+            if (emitter != null) emitter.Stop();
+
+            other.gameObject.SetActive(false);
             musicEv.setParameterByName("Change", 3);
         }
 
