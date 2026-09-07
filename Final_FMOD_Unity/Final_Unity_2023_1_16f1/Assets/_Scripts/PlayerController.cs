@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 //using Studio.System.initialize;
 
 public class PlayerController : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private GameObject[] mushrooms;
     private int count = 0;
     public int totalPickups = 9;
+    public Text countText;
 
     private GameObject playerFollow;
 
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
         rollingEv.start();
 
         reverbSnapshotEv = FMODUnity.RuntimeManager.CreateInstance(reverbSnapshot);
+
+        countText.text = "Fruits: 0 / " + totalPickups;
     }
 
     void FixedUpdate()
@@ -128,6 +132,7 @@ public class PlayerController : MonoBehaviour
         {
 			other.gameObject.SetActive(false);
             count++;
+            countText.text = "Fruits: " + count + " / " + totalPickups;
             Debug.Log("Pickup raccolti: " + count);
 
             if (count >= totalPickups)
