@@ -179,6 +179,9 @@
 		<property name="volume">
 			<value>-3.5</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{c6a88d10-3035-4124-ae89-cd25bdd95586}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{7ecbf936-659f-4599-a50b-2deeb51dcfb5}</destination>
 		</relationship>
@@ -707,6 +710,11 @@
 		<relationship name="triggerConditions">
 			<destination>{3d633231-9380-4dbe-853c-b1fc50e4a433}</destination>
 		</relationship>
+	</object>
+	<object class="SidechainModulator" id="{c6a88d10-3035-4124-ae89-cd25bdd95586}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{7ecbf936-659f-4599-a50b-2deeb51dcfb5}">
 		<relationship name="effects">

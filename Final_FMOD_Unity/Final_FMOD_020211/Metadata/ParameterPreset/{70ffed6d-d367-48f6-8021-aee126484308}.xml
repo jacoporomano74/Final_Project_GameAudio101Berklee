@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{70ffed6d-d367-48f6-8021-aee126484308}">
+		<property name="name">
+			<value>MushroomProximity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{f8486c49-3d3e-0b18-03df-ee86d8c76b32}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{4f915349-9a6a-4f17-8de8-73b5e3113a61}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{4f915349-9a6a-4f17-8de8-73b5e3113a61}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
