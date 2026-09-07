@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 //using Studio.System.initialize;
 
 public class PlayerController : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float mushroomDuckRadius = 30f;
+    private bool gameEnded = false;
     private GameObject[] mushrooms;
     private int count = 0;
     public int totalPickups = 9;
@@ -61,6 +63,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+                if (gameEnded)
+        {
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.angularVelocity = Vector3.zero;
+            return;
+        }
         //player movement with input axis
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
@@ -100,27 +108,46 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+    IEnumerator RestartAfterStinger()
+    {
+        yield return new WaitForSeconds(7f);
 
+        musicEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        musicEv.release();
+        rollingEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        rollingEv.release();
+        reverbSnapshotEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        reverbSnapshotEv.release();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Pickup"))
+        	if (other.gameObject.CompareTag ("Pickup"))
         {
-            other.gameObject.SetActive(false);
+			other.gameObject.SetActive(false);
             count++;
             Debug.Log("Pickup raccolti: " + count);
 
             if (count >= totalPickups)
             {
                 musicEv.setParameterByName("Change", 2);
+                gameEnded = true;
+                StartCoroutine(RestartAfterStinger());
             }
-        }
-        if (other.gameObject.CompareTag("losecube"))
+		}
+        	if (other.gameObject.CompareTag ("losecube"))
         {
-            other.gameObject.SetActive(false);
-            musicEv.setParameterByName("Change", 3);
-        }
+            FMODUnity.StudioEventEmitter emitter = other.GetComponent<FMODUnity.StudioEventEmitter>();
+            if (emitter != null) emitter.Stop();
 
+            other.gameObject.SetActive(false);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MushroomProximity", 0f);
+            musicEv.setParameterByName("Change", 3);
+            gameEnded = true;
+            StartCoroutine(RestartAfterStinger());
+        }
         if (other.gameObject.CompareTag("ChangeCube"))
         {
             musicEv.setParameterByName("Change", 0);
