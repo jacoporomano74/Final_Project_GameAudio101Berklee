@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{3090886a-bff7-4189-817c-49627f4b23b9}">
 		<property name="name">
-			<value>3DRoom</value>
+			<value>Lake3DRoom</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -64,19 +64,29 @@
 			<value>0</value>
 		</property>
 		<property name="maximumDistance">
-			<value>4.80000019</value>
+			<value>10</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{621b35f7-a499-4c3b-9507-21a4adfad630}" />
 	<object class="GroupTrack" id="{1a55def3-68e3-497a-9473-06558bbd16ad}">
+		<relationship name="modules">
+			<destination>{9971003b-3e84-42c7-aef4-d7533c5aa171}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{46c65f83-7067-4b7a-93c7-3d56ebfd0d4d}</destination>
 		</relationship>
 	</object>
-	<object class="Timeline" id="{73e5e511-06f7-48ed-ba5b-838523eee5b6}" />
+	<object class="Timeline" id="{73e5e511-06f7-48ed-ba5b-838523eee5b6}">
+		<relationship name="modules">
+			<destination>{9971003b-3e84-42c7-aef4-d7533c5aa171}</destination>
+		</relationship>
+		<relationship name="markers">
+			<destination>{8391e921-9cc6-4185-afdc-0b8795f9a508}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerMaster" id="{83dff6df-7340-4629-b334-e77ff19b060e}">
 		<property name="volume">
-			<value>-11.5</value>
+			<value>-4.5</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{84bbad50-fb6d-46dc-81a8-ea3aa08909e2}</destination>
@@ -94,6 +104,17 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ef71291c-30f4-4b6a-8971-a93214a5a3ee}" />
+	<object class="SingleSound" id="{9971003b-3e84-42c7-aef4-d7533c5aa171}">
+		<property name="length">
+			<value>21</value>
+		</property>
+		<property name="looping">
+			<value>true</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{442f37e9-8a4d-4dc9-b95c-70aa96d02fd6}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{46c65f83-7067-4b7a-93c7-3d56ebfd0d4d}">
 		<property name="name">
 			<value>Audio 1</value>
@@ -106,6 +127,20 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{83dff6df-7340-4629-b334-e77ff19b060e}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{8391e921-9cc6-4185-afdc-0b8795f9a508}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="length">
+			<value>20.999999999999993</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{73e5e511-06f7-48ed-ba5b-838523eee5b6}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{621b35f7-a499-4c3b-9507-21a4adfad630}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{84bbad50-fb6d-46dc-81a8-ea3aa08909e2}">
@@ -124,6 +159,9 @@
 	<object class="MixerBusPanner" id="{efdd06d4-c145-44ce-a71f-d3f7327bb331}" />
 	<object class="MixerBusFader" id="{3f07c281-c7ad-494e-a4d3-a1dd5c749f89}" />
 	<object class="SpatialiserEffect" id="{6f948160-6ced-47b4-a2eb-6afc848a0888}">
+		<property name="distanceRolloffType">
+			<value>1</value>
+		</property>
 		<property name="minimumDistance">
 			<value>0</value>
 		</property>

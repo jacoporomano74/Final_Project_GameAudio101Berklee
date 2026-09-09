@@ -173,7 +173,7 @@
 			<value>Red Light 1</value>
 		</property>
 		<property name="volume">
-			<value>-12</value>
+			<value>-18.5</value>
 		</property>
 		<property name="name">
 			<value>AMB</value>
@@ -231,6 +231,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{d66b6c59-e8e1-4f24-ad11-152f0fb1deda}">
+		<property name="volume">
+			<value>-4</value>
+		</property>
 		<property name="name">
 			<value>OneShotAnimal</value>
 		</property>
