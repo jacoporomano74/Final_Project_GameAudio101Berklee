@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         reverbSnapshotEv = FMODUnity.RuntimeManager.CreateInstance(reverbSnapshot);
 
         countText.text = "Fruits: 0 / " + totalPickups;
+        countText.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -138,6 +139,7 @@ public class PlayerController : MonoBehaviour
     if (count == 1)
     {
         musicEv.setParameterByName("Change", 1);
+        countText.gameObject.SetActive(true);
     }
 
     if (count >= totalPickups)
@@ -157,16 +159,6 @@ public class PlayerController : MonoBehaviour
             musicEv.setParameterByName("Change", 3);
             gameEnded = true;
             StartCoroutine(RestartAfterStinger());
-        }
-        
-
-        if (other.gameObject.CompareTag ("losecube"))
-        {
-            FMODUnity.StudioEventEmitter emitter = other.GetComponent<FMODUnity.StudioEventEmitter>();
-            if (emitter != null) emitter.Stop();
-
-            other.gameObject.SetActive(false);
-            musicEv.setParameterByName("Change", 3);
         }
 
         if (other.gameObject.CompareTag("ReverbZone"))
@@ -197,11 +189,6 @@ public class PlayerController : MonoBehaviour
                 musicEv.setParameterByName("Change", 0);
                 musicEv.start();
             }
-        }
-
-        if (other.gameObject.CompareTag("ChangeCube"))
-        {
-            musicEv.setParameterByName("Change", 1);
         }
     }
 }
