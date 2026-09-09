@@ -128,20 +128,25 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        	if (other.gameObject.CompareTag ("Pickup"))
-        {
-			other.gameObject.SetActive(false);
-            count++;
-            countText.text = "Fruits: " + count + " / " + totalPickups;
-            Debug.Log("Pickup raccolti: " + count);
+        if (other.gameObject.CompareTag ("Pickup"))
+{
+    other.gameObject.SetActive(false);
+    count++;
+    countText.text = "Fruits: " + count + " / " + totalPickups;
+    Debug.Log("Pickup raccolti: " + count);
 
-            if (count >= totalPickups)
-            {
-                musicEv.setParameterByName("Change", 2);
-                gameEnded = true;
-                StartCoroutine(RestartAfterStinger());
-            }
-		}
+    if (count == 1)
+    {
+        musicEv.setParameterByName("Change", 1);
+    }
+
+    if (count >= totalPickups)
+    {
+        musicEv.setParameterByName("Change", 2);
+        gameEnded = true;
+        StartCoroutine(RestartAfterStinger());
+    }
+}
         	if (other.gameObject.CompareTag ("losecube"))
         {
             FMODUnity.StudioEventEmitter emitter = other.GetComponent<FMODUnity.StudioEventEmitter>();
@@ -153,10 +158,7 @@ public class PlayerController : MonoBehaviour
             gameEnded = true;
             StartCoroutine(RestartAfterStinger());
         }
-        if (other.gameObject.CompareTag("ChangeCube"))
-        {
-            musicEv.setParameterByName("Change", 0);
-        }
+        
 
         if (other.gameObject.CompareTag ("losecube"))
         {
