@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private int count = 0;
     public int totalPickups = 9;
     public Text countText;
+    public FMODUnity.StudioEventEmitter ambienceEmitter;
+    public float ambienceFadeOutDuration = 2f;
 
     private GameObject playerFollow;
 
@@ -114,18 +116,38 @@ public class PlayerController : MonoBehaviour
         }
     }
     IEnumerator RestartAfterStinger()
+{
+    yield return new WaitForSeconds(7f);
+
+    musicEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    musicEv.release();
+    rollingEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    rollingEv.release();
+    reverbSnapshotEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    reverbSnapshotEv.release();
+
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+}
+
+IEnumerator FadeOutAmbience(float duration)
+{
+    if (ambienceEmitter == null) yield break;
+
+    FMOD.Studio.EventInstance ambienceEv = ambienceEmitter.EventInstance;
+    if (!ambienceEv.isValid()) yield break;
+
+    float startVolume;
+    ambienceEv.getVolume(out startVolume);
+
+    float t = 0f;
+    while (t < duration)
     {
-        yield return new WaitForSeconds(7f);
-
-        musicEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        musicEv.release();
-        rollingEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        rollingEv.release();
-        reverbSnapshotEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        reverbSnapshotEv.release();
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        t += Time.deltaTime;
+        ambienceEv.setVolume(Mathf.Lerp(startVolume, 0f, t / duration));
+        yield return null;
     }
+    ambienceEv.setVolume(0f);
+}
 
     void OnTriggerEnter(Collider other)
     {
@@ -143,23 +165,27 @@ public class PlayerController : MonoBehaviour
     }
 
     if (count >= totalPickups)
-    {
-        musicEv.setParameterByName("Change", 2);
-        gameEnded = true;
-        StartCoroutine(RestartAfterStinger());
-    }
+{
+    musicEv.setParameterByName("Change", 2);
+    gameEnded = true;
+    rollingEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    StartCoroutine(FadeOutAmbience(ambienceFadeOutDuration));
+    StartCoroutine(RestartAfterStinger());
 }
-        	if (other.gameObject.CompareTag ("losecube"))
-        {
-            FMODUnity.StudioEventEmitter emitter = other.GetComponent<FMODUnity.StudioEventEmitter>();
-            if (emitter != null) emitter.Stop();
+}
+        if (other.gameObject.CompareTag ("losecube"))
+{
+    FMODUnity.StudioEventEmitter emitter = other.GetComponent<FMODUnity.StudioEventEmitter>();
+    if (emitter != null) emitter.Stop();
 
-            other.gameObject.SetActive(false);
-            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MushroomProximity", 0f);
-            musicEv.setParameterByName("Change", 3);
-            gameEnded = true;
-            StartCoroutine(RestartAfterStinger());
-        }
+    other.gameObject.SetActive(false);
+    FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MushroomProximity", 0f);
+    musicEv.setParameterByName("Change", 3);
+    gameEnded = true;
+    rollingEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    StartCoroutine(FadeOutAmbience(ambienceFadeOutDuration));
+    StartCoroutine(RestartAfterStinger());
+}
 
         if (other.gameObject.CompareTag("ReverbZone"))
         {
