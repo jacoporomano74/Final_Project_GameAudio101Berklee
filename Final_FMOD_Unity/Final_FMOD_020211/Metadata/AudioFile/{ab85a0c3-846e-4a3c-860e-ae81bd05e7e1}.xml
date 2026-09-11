@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{5ef26923-59a3-4893-8d50-2dca7793e819}">
+	<object class="AudioFile" id="{ab85a0c3-846e-4a3c-860e-ae81bd05e7e1}">
 		<property name="assetPath">
-			<value>Cubes/cube_door.wav</value>
+			<value>Cubes/Pickup 6.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>44.0999985</value>
+			<value>48</value>
 		</property>
 		<property name="channelCount">
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>1.7371428571428571</value>
+			<value>1.9602916666666668</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{abfc3c33-6703-4d2f-a4c7-f45b059864dd}</destination>

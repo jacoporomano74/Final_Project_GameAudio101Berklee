@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{55d03b2a-0282-42e8-b3f6-69bbed1f01ae}">
+	<object class="AudioFile" id="{9454f36c-e7f4-4f82-822e-f20d5ced6a98}">
 		<property name="assetPath">
-			<value>Cubes/cube_frankmonster.wav</value>
+			<value>Cubes/Pickup 7.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>44.0999985</value>
+			<value>48</value>
 		</property>
 		<property name="channelCount">
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>4.0533333333333337</value>
+			<value>1.9603124999999999</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{abfc3c33-6703-4d2f-a4c7-f45b059864dd}</destination>

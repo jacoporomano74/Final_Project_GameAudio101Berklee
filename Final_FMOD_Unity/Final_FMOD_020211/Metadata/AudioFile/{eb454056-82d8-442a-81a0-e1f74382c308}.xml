@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{b5d91293-4b16-478f-a3c5-0cfa09a18d00}">
+	<object class="AudioFile" id="{eb454056-82d8-442a-81a0-e1f74382c308}">
 		<property name="assetPath">
-			<value>Cubes/cube_dracula.wav</value>
+			<value>Cubes/Pickup 1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>44.0999985</value>
+			<value>48</value>
 		</property>
 		<property name="channelCount">
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>2.776235827664399</value>
+			<value>2.2222291666666667</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{abfc3c33-6703-4d2f-a4c7-f45b059864dd}</destination>

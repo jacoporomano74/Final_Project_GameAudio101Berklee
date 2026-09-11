@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
     public string reverbSnapshot = "snapshot:/ReverbRoom";
     private FMOD.Studio.EventInstance reverbSnapshotEv;
 
+    public string musicDuckSnapshot = "snapshot:/MusicDuckPickup";
+    FMOD.Studio.EventInstance musicDuckEv;
+    public float duckHoldTime = 1f;
+    private Coroutine duckRoutine;
+
 
     void Start()
     {
@@ -63,6 +68,8 @@ public class PlayerController : MonoBehaviour
         rollingEv.start();
 
         reverbSnapshotEv = FMODUnity.RuntimeManager.CreateInstance(reverbSnapshot);
+
+        musicDuckEv = FMODUnity.RuntimeManager.CreateInstance(musicDuckSnapshot);
 
         countText.text = "Fruits: 0 / " + totalPickups;
         countText.gameObject.SetActive(false);
@@ -125,6 +132,8 @@ public class PlayerController : MonoBehaviour
     rollingEv.release();
     reverbSnapshotEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     reverbSnapshotEv.release();
+    musicDuckEv.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    musicDuckEv.release();
 
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 }
@@ -149,6 +158,13 @@ IEnumerator FadeOutAmbience(float duration)
     ambienceEv.setVolume(0f);
 }
 
+    IEnumerator DuckMusicForPickup()
+    {
+        musicDuckEv.start();
+        yield return new WaitForSeconds(duckHoldTime);
+        musicDuckEv.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag ("Pickup"))
@@ -157,6 +173,9 @@ IEnumerator FadeOutAmbience(float duration)
     count++;
     countText.text = "Fruits: " + count + " / " + totalPickups;
     Debug.Log("Pickup raccolti: " + count);
+
+    if (duckRoutine != null) StopCoroutine(duckRoutine);
+    duckRoutine = StartCoroutine(DuckMusicForPickup());
 
     if (count == 1)
     {
